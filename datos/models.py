@@ -14,3 +14,12 @@ class Evento(models.Model):
 	nombre = models.CharField(max_length=128)
 	fuente = models.CharField(max_length=255)
 	autor = models.ForeignKey(Usuario)
+
+
+class Campana(models.Model):
+	nombre = models.CharField(max_length=128)
+
+
+class PoliticoCampana(models.Model):
+	campana = models.ForeignKey(Campana)
+	politico = models.ForeignKey(Politico)
