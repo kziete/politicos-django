@@ -19,9 +19,10 @@ from django.contrib import admin
 from sitio import views
 
 urlpatterns = [
-	url(r'^$', views.Home.as_view(), name='home'),
-	url(r'^(?P<slug>[-\w]+)$',views.DetallePolitico.as_view(),name="detalle-politico"),
-    url(r'^(?P<politico>[-\w]+)/(?P<slug>[-\w]+)$',views.DetalleEvento.as_view(),name="detalle-evento"),
-	
     url(r'^admin/', include(admin.site.urls)),
+    
+    url(r'^$', views.Home.as_view(), name='home'),
+    url(r'^(?P<slug>[-\w]+)$',views.DetallePolitico.as_view(),name="detalle-politico"),
+    url(r'^(?P<politico>[-\w]+)/(?P<slug>[-\w]+)$',views.DetalleEvento.as_view(),name="detalle-evento"),
+    
 ]
