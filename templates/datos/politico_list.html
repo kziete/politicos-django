@@ -1,9 +1,13 @@
+{% extends "contenedor.html" %}
+
+{% block content %}
 <ul>
 	{% for politico in object_list %}
 		<li>
 			<a href="{% url 'detalle-politico' politico.slug %}">
-				{{politico}} / {{politico.total}}
+				{{politico}} - {{politico.total}} cagadas
 			</a>
 		</li>
 	{% endfor %}	
 </ul>
+{% endblock %}
