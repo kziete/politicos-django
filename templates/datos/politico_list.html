@@ -1,5 +1,9 @@
 <ul>
 	{% for politico in object_list %}
-		<li>{{politico}} / {{politico.total}}</li>
+		<li>
+			<a href="{% url 'detalle-politico' politico.slug %}">
+				{{politico}} / {{politico.total}}
+			</a>
+		</li>
 	{% endfor %}	
 </ul>

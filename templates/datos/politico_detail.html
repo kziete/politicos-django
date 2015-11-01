@@ -1,0 +1,7 @@
+<h1>{{object.nombre}}</h1>
+
+<h4>Cagadas</h4>
+
+{% for evento in object.evento_set.all %}
+{{evento}}
+{% endfor %}

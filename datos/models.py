@@ -1,10 +1,18 @@
 from django.db import models
 from sitio.models import Usuario
+from django.template.defaultfilters import slugify
+
 
 # Create your models here.
 
 class Politico(models.Model):
 	nombre = models.CharField(max_length=128)
+	slug = models.SlugField(('slug'), max_length=60, blank=True)
+
+	def save(self, *args, **kwargs):
+		self.slug = slugify(self.nombre)
+		super(Politico, self).save(*args, **kwargs)
+
 
 	def __unicode__(self):
 		return self.nombre
@@ -14,6 +22,11 @@ class Evento(models.Model):
 	nombre = models.CharField(max_length=128)
 	fuente = models.CharField(max_length=255)
 	autor = models.ForeignKey(Usuario)
+
+	fecha = models.DateTimeField()
+
+	creacion = models.DateTimeField(auto_now_add=True)
+
 
 
 class Campana(models.Model):
