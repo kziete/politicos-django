@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView
+from django.views.generic.edit import CreateView
 from django.db.models import Count
+from django import forms
 
 from datos.models import *
 
@@ -15,4 +17,8 @@ class DetallePolitico(DetailView):
 	model = Politico
 
 class DetalleEvento(DetailView):
+	model = Evento
+
+class DenunciaEvento(CreateView):
+	fields = ("nombre","fuente")
 	model = Evento
