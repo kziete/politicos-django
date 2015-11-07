@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django.db import models
 from sitio.models import Usuario
 from django.template.defaultfilters import slugify
@@ -21,7 +22,7 @@ class Politico(models.Model):
 
 class Evento(models.Model):
 	politico = models.ForeignKey(Politico)
-	nombre = models.CharField(max_length=128)
+	nombre = models.CharField(max_length=128,verbose_name="Título")
 	fuente = models.CharField(max_length=255)
 	autor = models.ForeignKey(Usuario)
 

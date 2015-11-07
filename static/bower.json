@@ -1,0 +1,20 @@
+{
+  "name": "Politicos",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kziete/politicos",
+  "authors": [
+    "Kziete <kziete@gmail.com>"
+  ],
+  "description": "Repositorio de Cagadas de nuestros políticos",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "datetimepicker": "~2.4.5"
+  }
+}
