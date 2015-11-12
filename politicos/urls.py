@@ -23,7 +23,9 @@ urlpatterns = [
     
     url(r'^$', views.Home.as_view(), name='home'),
 
-    url(r'^login',views.LoginView.as_view(),name="login"),
+    url(r'^login', views.LoginView.as_view(),name="login"),
+    url(r'^logout', views.logout, name="logout"),    
+    url(r'^registro', views.RegistroView.as_view(),name="registro"),
 
     url(r'^(?P<slug>[-\w]+)$',views.DetallePolitico.as_view(),name="detalle-politico"),
     url(r'^(?P<politico>[-\w]+)/denuncia$',views.DenunciaEvento.as_view(),name="denuncia-evento"),

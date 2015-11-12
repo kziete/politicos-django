@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView,FormView
@@ -39,6 +39,9 @@ class DenunciaEvento(CreateView):
 
 		return HttpResponseRedirect(reverse('detalle-politico', kwargs={"slug" :data.politico.slug}))
     	
+def logout(request):
+	del request.session['usuario']
+	return redirect("/")
 
 class LoginView(FormView):
 	template_name = 'login.html'
@@ -58,3 +61,18 @@ class LoginView(FormView):
 			return self.request.GET['path']
 		else:
 			return "/"
+
+
+class RegistroView(FormView):
+	template_name = 'registro.html'
+	form_class = RegistrarForm
+	success_url = "/"
+
+	def form_valid(self,form):
+		usuario = form.registrar()
+
+		if usuario is not None:
+			self.request.session['usuario'] = usuario.id
+			return super(RegistroView, self).form_valid(form)
+		else:
+			return super(RegistroView, self).form_invalid(form)
