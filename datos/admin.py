@@ -4,3 +4,4 @@ from models import *
 
 admin.site.register(Politico)
 admin.site.register(Evento)
+admin.site.register(Partido)

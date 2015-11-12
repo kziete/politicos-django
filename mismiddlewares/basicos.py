@@ -20,4 +20,7 @@ class Autenticacion:
 		if request.usuario:
 			response.context_data['usuario'] = Usuario.objects.get(id=request.usuario)
 
+		if "path" in request.GET:
+			response.context_data['referer_path'] = "?path={0}".format(request.GET['path'])
+
 		return response

@@ -43,7 +43,16 @@ def logout(request):
 	del request.session['usuario']
 	return redirect("/")
 
-class LoginView(FormView):
+
+
+class PathReminder(object):
+	def get_success_url(self):
+		if "path" in self.request.GET:
+			return self.request.GET['path']
+		else:
+			return "/"
+
+class LoginView(PathReminder,FormView):
 	template_name = 'login.html'
 	form_class = LoginForm
 
@@ -56,14 +65,10 @@ class LoginView(FormView):
 		else:
 			return super(LoginView, self).form_invalid(form)
 
-	def get_success_url(self):
-		if "path" in self.request.GET:
-			return self.request.GET['path']
-		else:
-			return "/"
+	
 
 
-class RegistroView(FormView):
+class RegistroView(PathReminder,FormView):
 	template_name = 'registro.html'
 	form_class = RegistrarForm
 	success_url = "/"

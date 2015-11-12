@@ -6,9 +6,18 @@ from django.template.defaultfilters import slugify
 
 # Create your models here.
 
+class Partido(models.Model):
+	nombre = models.CharField(max_length=128)
+
+	def __unicode__(self):
+		return self.nombre
+
+
 class Politico(models.Model):
 	nombre = models.CharField(max_length=128)
 	slug = models.SlugField(('slug'), max_length=60, blank=True)
+	partido = models.ForeignKey(Partido, null=True, on_delete=models.SET_NULL)
+
 
 	def eventos(self):
 		return self.evento_set.all().order_by("-fecha")
@@ -19,6 +28,12 @@ class Politico(models.Model):
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.nombre)
 		super(Politico, self).save(*args, **kwargs)
+
+class BitacoraPartidoPolitico(models.Model):
+	partido = models.ForeignKey(Partido, null=True, on_delete=models.SET_NULL)
+	politico = models.ForeignKey(Politico, null=True, on_delete=models.SET_NULL)
+	fecha = models.DateTimeField(auto_now_add=True)
+
 
 class Evento(models.Model):
 	politico = models.ForeignKey(Politico)
