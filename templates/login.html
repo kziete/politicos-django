@@ -2,10 +2,19 @@
 
 {% block content %}
 
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Logear</button>
-    <a href="{% url "registro" %}{{referer_path}}">Registrar</a>
-</form>
+<section id="content">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<form action="" method="post">
+					{% csrf_token %}
+				    {{ form.as_p }}
+				    <button class="btn" type="submit">Logear</button>
+				    <a class="btn btn-primary" href="{% url "registro" %}{{referer_path}}">Registrar</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
 
 {% endblock %}

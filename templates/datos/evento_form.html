@@ -2,11 +2,19 @@
 {% load staticfiles %}
 
 {% block content %}
+<section id="content">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<form action="" method="post">{% csrf_token %}
+				    {{ form.as_p }}
+				    <button type="submit">Guardar</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
 
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
 
 <link rel="stylesheet" type="text/css" href="{% static "bower_components/datetimepicker/jquery.datetimepicker.css" %}">
 <script type="text/javascript" src="{% static "bower_components/datetimepicker/jquery.datetimepicker.js" %}"></script>

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView,FormView
+from django.views.generic.base import ContextMixin
 from django.db.models import Count
 from django.core.urlresolvers import reverse
 
@@ -10,24 +11,27 @@ import json
 from datos.models import *
 from forms import *
 
-class Contenedor(object):
-	pass
+class Sidebar(ContextMixin):
+	def get_context_data(self,**kwargs):
+		context = super(Sidebar, self).get_context_data(**kwargs)
+		context['politicos'] = Politico.objects.all().annotate(total=Count('evento')).order_by('-total')
+		return context
+
+
 
 # Create your views here.
-class Home(ListView,Contenedor):
-	def get_queryset(self):
-		#Corregir esto por una query, que deje fuera los eventos desactivados
-		return Politico.objects.all().annotate(total=Count('evento')).order_by('-total')
+class Home(Sidebar,ListView):
+	model = Evento
 
 
-class DetallePolitico(DetailView):
+class DetallePolitico(Sidebar,DetailView):
 	model = Politico
 
 class DetalleEvento(DetailView):
 	model = Evento
 
 class DenunciaEvento(CreateView):
-	fields = ("nombre","fuente","fecha")
+	fields = ("nombre","descripcion","fuente","fecha")
 	model = Evento
 
 	def form_valid(self,form):

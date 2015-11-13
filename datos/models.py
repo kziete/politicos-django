@@ -38,6 +38,7 @@ class BitacoraPartidoPolitico(models.Model):
 class Evento(models.Model):
 	politico = models.ForeignKey(Politico)
 	nombre = models.CharField(max_length=128,verbose_name="Título")
+	descripcion = models.TextField(null=True,blank=True)
 	fuente = models.CharField(max_length=255)
 	autor = models.ForeignKey(Usuario)
 

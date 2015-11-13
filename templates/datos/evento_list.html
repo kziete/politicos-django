@@ -4,17 +4,12 @@
 
 <div class="col-md-8 col-sm-8">
     <div class="row container-post">
-        <div class="col-md-12">
-			<h1>{{object.nombre}}</h1>
-			<a href="{% url 'denuncia-evento' object.slug %}">Denunciar</a>
-
-        </div>
-    	{% for evento in object.eventos %}
+    	{% for evento in object_list %}
         <div class="col-md-12">
             <div class="post-container">
                 <div class="post-content">
                     <div class="heading-title heading-small">
-                      <h2><a href="{% url 'detalle-evento' object.slug evento.slug %}">{{evento}}</a></h2>
+                      <h2><a href="{% url 'detalle-evento' evento.politico.slug evento.slug %}">{{evento}}</a></h2>
                     </div>
                     <div class="post-meta">
                       <span>By <a href="#" title="Posts by admin" rel="author">Admin</a></span>
@@ -26,7 +21,7 @@
                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                     consequat...</p>
                     <div class="post-link">
-                        <a href="{% url 'detalle-evento' object.slug evento.slug %}"><span>Read more</span></a>
+                        <a href="{% url 'detalle-evento' evento.politico.slug evento.slug %}"><span>Leer más</span></a>
                     </div>
                 </div>
                 <div class="post-atribut">
@@ -56,5 +51,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
