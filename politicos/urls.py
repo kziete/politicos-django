@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import settings
 
 from sitio import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT, 'show_indexes': True }),
     
     url(r'^$', views.Home.as_view(), name='home'),
 
@@ -30,5 +32,6 @@ urlpatterns = [
     url(r'^(?P<slug>[-\w]+)$',views.DetallePolitico.as_view(),name="detalle-politico"),
     url(r'^(?P<politico>[-\w]+)/denuncia$',views.DenunciaEvento.as_view(),name="denuncia-evento"),
     url(r'^(?P<politico>[-\w]+)/(?P<slug>[-\w]+)$',views.DetalleEvento.as_view(),name="detalle-evento"),
+
     
 ]

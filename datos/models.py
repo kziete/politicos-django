@@ -15,6 +15,7 @@ class Partido(models.Model):
 
 class Politico(models.Model):
 	nombre = models.CharField(max_length=128)
+	imagen = models.ImageField(upload_to='politicos',null=True,blank=True)
 	slug = models.SlugField(('slug'), max_length=60, blank=True)
 	partido = models.ForeignKey(Partido, null=True, on_delete=models.SET_NULL)
 
