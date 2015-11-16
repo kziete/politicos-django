@@ -42,11 +42,13 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="pager">
-              <li class="previous disabled"><a href="#"><i class="fa fa-arrow-circle-o-left"></i> Older</a></li>
+            {% if page_obj.has_previous %}
+                <li class="previous"><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-arrow-circle-o-left"></i> Atrás</a></li>
+            {% endif %}
+
               <!--li class="next"><a href="#">Newer <i class="fa fa-arrow-circle-o-right"></i></a></li-->
-              <li>{{object_list}}!</li>
-            {% if object_list.has_next %}
-                <li class="next"><a href="?page={{ object_list.next_page_number }}">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+            {% if page_obj.has_next %}
+                <li class="next"><a href="?page={{ page_obj.next_page_number }}">Siguiente<i class="fa fa-arrow-circle-o-right"></i></a></li>
             {% endif %}
             </ul>
         </div>

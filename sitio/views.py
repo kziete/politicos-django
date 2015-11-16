@@ -22,7 +22,7 @@ class Sidebar(ContextMixin):
 # Create your views here.
 class Home(Sidebar,ListView):
 	model = Evento
-	paginate_by = 2
+	paginate_by = 5
 
 
 class DetallePolitico(Sidebar,DetailView):
