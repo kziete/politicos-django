@@ -12,14 +12,11 @@
                       <h2><a href="{% url 'detalle-evento' evento.politico.slug evento.slug %}">{{evento}}</a></h2>
                     </div>
                     <div class="post-meta">
-                      <span>By <a href="#" title="Posts by admin" rel="author">Admin</a></span>
-                      <span>On September 11, 2014</span>
-                      <span>In <a href="#">Story</a></span>
+                      <span>Por <a href="#" title="Denuncias de {{evento.autor}}" rel="author">{{evento.autor}}</a></span>
+                      <span>El {{evento.fecha|date:"DATE_FORMAT"}}</span>
+                      <!--span>In <a href="#">Story</a></span-->
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat...</p>
+                    <p>{{evento.descripcion}}</p>
                     <div class="post-link">
                         <a href="{% url 'detalle-evento' evento.politico.slug evento.slug %}"><span>Leer más</span></a>
                     </div>
@@ -46,7 +43,11 @@
         <div class="col-md-12">
             <ul class="pager">
               <li class="previous disabled"><a href="#"><i class="fa fa-arrow-circle-o-left"></i> Older</a></li>
-              <li class="next"><a href="#">Newer <i class="fa fa-arrow-circle-o-right"></i></a></li>
+              <!--li class="next"><a href="#">Newer <i class="fa fa-arrow-circle-o-right"></i></a></li-->
+              <li>{{object_list}}!</li>
+            {% if object_list.has_next %}
+                <li class="next"><a href="?page={{ object_list.next_page_number }}">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+            {% endif %}
             </ul>
         </div>
     </div>

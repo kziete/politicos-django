@@ -58,6 +58,9 @@ class Evento(models.Model):
 		self.slug = slugify(self.nombre)
 		super(Evento, self).save(*args, **kwargs)
 
+	class Meta:
+		ordering = ("-creacion",)
+
 class Campana(models.Model):
 	nombre = models.CharField(max_length=128)
 

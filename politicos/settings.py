@@ -40,6 +40,8 @@ INSTALLED_APPS = (
 
     'datos',
     'sitio',
+
+    'sorl.thumbnail',
 )
 
 MIDDLEWARE_CLASSES = (

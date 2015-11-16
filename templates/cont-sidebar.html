@@ -1,4 +1,5 @@
 {% extends "contenedor.html" %}
+{% load thumbnail %}
 
 {% block content %}
 <section id="content">
@@ -24,11 +25,12 @@
               	{% for politico in politicos %}
                 <li>
                     <div class="post-wrapper">
-                        <div class="post-img" style="background: url(img/image-portfolio-04.jpg);"></div>
+                        {% thumbnail politico.imagen "70x70" crop="center" as im %}
+                        <div class="post-img" style="background: url({{im.url}});"></div>
+                        {% endthumbnail %}
                         <div class="post-text">
                             <div class="post-meta">
-                                <span><em>in</em> <a href="#" title="View all posts in berita utama" rel="category tag">berita utama</a></span>
-                                <span><em>April 22, 2014</em></span>
+                                <span><em>Actualmente en </em> <a href="#" title="Ver todos los póliticos en {{politico.partido}}" rel="category tag">{{politico.partido}}</a></span>
                             </div>
                             <div class="heading-title">
                                 <h2><a href="{% url 'detalle-politico' politico.slug %}">{{politico}}</a></h2>
