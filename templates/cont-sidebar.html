@@ -33,7 +33,8 @@
                                 <span><em>Actualmente en </em> <a href="#" title="Ver todos los póliticos en {{politico.partido}}" rel="category tag">{{politico.partido}}</a></span>
                             </div>
                             <div class="heading-title">
-                                <h2><a href="{% url 'detalle-politico' politico.slug %}">{{politico}}</a></h2>
+                                <h2><a href="{% url 'detalle-politico' politico.slug %}">{{politico}}</a>
+                                <br> {{politico.total}} cagadas</h2>
                             </div>
                         </div>
                     </div>

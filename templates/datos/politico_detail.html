@@ -5,8 +5,8 @@
 <div class="col-md-8 col-sm-8">
     <div class="row container-post">
         <div class="col-md-12">
-			<h1>{{object.nombre}}</h1>
-			<a href="{% url 'denuncia-evento' object.slug %}">Denunciar</a>
+			<h1 class="pull-left">{{object.nombre}}</h1>
+			<a class="pull-right btn btn-danger" href="{% url 'denuncia-evento' object.slug %}">Denunciar</a>
 
         </div>
     	{% for evento in object.eventos %}
